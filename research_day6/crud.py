@@ -13,7 +13,25 @@ import click
 @click.option("--datafile", default="menagerie.csv")
 def create(db_name: str, datafile: str) -> None:
     """Create database"""
-    ...
+    with sqlite3.connect(db_name) as conn:
+        with open(datafile, "r") as f:
+            data = csv.DictReader(f)
+            cursor = conn.cursor()
+            cursor.execute("DROP TABLE IF EXISTS animal;")
+            cursor.execute(
+                "CREATE TABLE animal ("
+                + "id integer not null primary key,"
+                + "name,"
+                + "age integer,"
+                + "species,"
+                + "location"
+                + ");"
+            )
+            # print(tuple(a.values() for a in data))
+            cursor.executemany(
+                "INSERT INTO animal VALUES(?, ?, ?, ?, ?);",
+                (tuple(a.values()) for a in data),
+            )
 
 
 @click.command(help="Read all records from the specified table")
@@ -21,7 +39,11 @@ def create(db_name: str, datafile: str) -> None:
 @click.option("--table", "-t", default="animal")
 def read(db_name: str, table: str) -> None:
     """Read all records"""
-    ...
+    with sqlite3.connect(db_name) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT * FROM {table};")
+        for record in cursor:
+            print(record)
 
 
 @click.command()
