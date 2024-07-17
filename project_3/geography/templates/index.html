@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Geography">
+        <meta name="keywords" content="world, sql">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+              href='{{ url_for("static", filename="css/style.css") }}'>
+        <title>The World of Flask</title>
+        <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    </head>
+    <body>
+        <nav>
+            <a class="brand" href='{{ url_for("main.get_index") }}'>Home</a>
+        </nav>
+        <main>
+            <section id="section_form">
+                <header>
+                    <h2>Pick the country, region, or a continent</h2>
+                </header>
+                <div class="dropdown">
+                    <form method="post" action='{{ url_for("main.post_index") }}'>
+                        <label for="countries">
+                            Pick a country
+                            <input list="dl_countries" name="country" id="country">
+                            <datalist id="dl_countries">
+                                {% for code2, country in countries %}<option value="{{ country }}"></option>{% endfor %}
+                            </datalist>
+                        </label>
+                        <button type="submit"
+                                id="button_country_query"
+                                name="country_query"
+                                class="normal">Get country info</button>
+                    </form>
+                </div>
+                <div class="dropdown">
+                    <form method="post" action='{{ url_for("main.post_index") }}'>
+                        <label for="select_region">
+                            Pick a region
+                            <select name="region" id="select_region">
+                                {% for region in regions %}<option value='{{ region["subregion"] }}'>{{ region["subregion"] }}</option>{% endfor %}
+                            </select>
+                        </label>
+                        <button type="submit"
+                                id="button_region_query"
+                                name="region_query"
+                                class="success">Get region info</button>
+                    </form>
+                </div>
+                <div class="dropdown">
+                    <form method="post" action='{{ url_for("main.post_index") }}'>
+                        <label for="select_continent">
+                            Pick a continent
+                            <select name="continent" id="select_continent">
+                                {% for continent in continents %}
+                                    <option value='{{ continent["continental_region"] }}'>{{ continent["continental_region"] }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                        <button type="submit"
+                                id="button_continent_query"
+                                name="continent_query"
+                                class="warning">Get continent info</button>
+                    </form>
+                </div>
+            </section>
+            <section id="section_data">
+                {% if data %}
+                    <table class="table" id="information">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Continent</th>
+                                <th>Region</th>
+                                <th>Capital</th>
+                                <th>Area</th>
+                                <th>Population</th>
+                                <th>Government</th>
+                                <th>Head</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data %}
+                                <tr>
+                                    <td>{{ row['country_name'] }}</td>
+                                    <td>{{ row['continental_region'] }}</td>
+                                    <td>{{ row['subregion'] }}</td>
+                                    <td>{{ row['capital_name'] }}</td>
+                                    <td>{{ row['area'] }}</td>
+                                    <td>{{ row['population'] }}</td>
+                                    <td>{{ row['government_system'] }}</td>
+                                    <td>{{ row['executive_head'] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif error is defined %}
+                    <h2>Your question has no answer.</h2>
+                {% else %}
+                    <h2>The fun will commence momentarily.</h2>
+                {% endif %}
+            </section>
+        </main>
+    </body>
+</html>
