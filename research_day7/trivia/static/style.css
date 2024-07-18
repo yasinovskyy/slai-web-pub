@@ -1,0 +1,31 @@
+#form {
+    display: flex;
+}
+
+.dropdown {
+    flex: 1;
+}
+
+.hard {
+    background-color: lightpink
+}
+
+.medium {
+    background-color: lightyellow;
+}
+
+.easy {
+    background-color: lightgreen;
+}
+
+.correct_answer {
+    font-weight: bold;
+}
+
+.correct_answer::after {
+    content: " is the correct answer";
+}
+
+.right {
+    float: right;
+}

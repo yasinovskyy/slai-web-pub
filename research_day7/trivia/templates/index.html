@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Hello</h1>
+    <section id="form">
+        <div class="dropdown">
+            <label for="areaSelect">
+                Pick an area of human knowledge
+                <select id="areaSelect" name="area">
+                    <!-- <option value="any" selected disabled>Pick one</option> -->
+                    <!-- Add options here -->
+                </select>
+            </label>
+        </div>
+        <div class="dropdown">
+            <label for="numberSelect">
+                Pick number of questions
+                <select id="numberSelect" name="number">
+                    <!-- <option value="any" selected disabled>Pick one</option> -->
+                    <!-- Add options here -->
+                </select>
+            </label>
+        </div>
+        <div>
+            <button type="button" id="getQuestionsBtn" onclick="getQuestions()">Get questions</button>
+        </div>
+    </section>
+    <article id="questions"></article>
+{% endblock content %}
