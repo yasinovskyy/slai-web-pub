@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="API client" />
+        <meta name="keywords" content="JavaScript, API" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Menagerie client</title>
+        <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    </head>
+    <body>
+        <main>
+            <section id="question">
+                <aside>
+                    <label for="locations">Pick a location</label>
+                    <select id="locations">
+                        {% for option in options %}<option value="{{ option }}">{{ option }}</option>{% endfor %}
+                    </select>
+                    <button onclick="getData('location')">Query the database</button>
+                </aside>
+            </section>
+            <section id="answer">
+                <table>
+                    <thead>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>age</th>
+                        <th>species</th>
+                        <th>location</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>
