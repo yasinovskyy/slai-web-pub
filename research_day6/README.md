@@ -33,6 +33,92 @@ rows = db.query("select * from artists")
 print(rows)
 ```
 
+## `sqlite3`
+
+Create an empty database:
+
+```bash
+$ sqlite3 menagerie.sqlite3
+```
+
+Switch to the `csv` mode:
+
+```bash
+sqlite> .mode csv
+```
+
+Import data from a file into a table:
+
+```bash
+sqlite> .import menagerie.csv animal
+```
+
+Check the database schema:
+
+```sql
+sqlite> .schema
+CREATE TABLE IF NOT EXISTS "animal"(
+"id" TEXT, "name" TEXT, "age" TEXT, "species" TEXT,
+ "location" TEXT);
+```
+
+Leave the `sqlite3` prompt:
+
+```bash
+sqlite> .quit
+```
+
+Delete the database file:
+
+```bash
+$ rm menagerie.sqlite3
+```
+
+Create an empty database:
+
+```bash
+$ sqlite3 menagerie.sqlite3
+```
+
+Switch to the `csv` mode:
+
+```bash
+sqlite> .mode csv
+```
+
+Create the table using the previously seen schema with some modifications:
+
+```sql
+sqlite> create table 'animal' ('id' integer not null primary key, 'name' text, 'age' integer, 'species' text, 'location' text);
+```
+
+Import data from a file into a table:
+
+```bash
+sqlite> .import menagerie.csv animal
+```
+
+One record (first line) may cause `INSERT failed: datatype mismatch` error but the rest should go through. Delete the first lin (cav heading) if necessary.
+
+Check the database schema:
+
+```sql
+sqlite> .schema
+CREATE TABLE IF NOT EXISTS 'animal' ('id' integer not null primary key, 'name' text, 'age' integer, 'species' text, 'location' text);
+```
+
+Alter the database, if necessary:
+
+```sql
+sqlite> alter table animal drop column 'species';
+```
+
+Leave the `sqlite3` prompt:
+
+```bash
+sqlite> .quit
+```
+
 ## References
 
 - [SQLite Home Page](https://www.sqlite.org/)
