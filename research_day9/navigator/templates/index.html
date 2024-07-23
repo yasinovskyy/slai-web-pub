@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <section id="colleges">
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>City</th>
+                <th>State</th>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        {% if current_user.is_authenticated %}
+                            <td>{{ item.city }}</td>
+                        {% else %}
+                            <td>{{ '*' * item.city|length }}</td>
+                        {% endif %}
+                        <td>{{ item.state }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>Luther College</td>
+                        <td>Decorah</td>
+                        <td>Iowa</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock content %}
