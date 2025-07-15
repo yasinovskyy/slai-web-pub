@@ -1,0 +1,1 @@
+<strong>$name</strong> is a generation <em>$gen</em> $type pokemon. 
