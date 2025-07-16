@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hello SLAI</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <link rel="stylesheet" href={{ url_for('static', filename='styles/style.css' ) }}>
+</head>
+
+<body>
+    <main>
+<section>
+<div>
+
+    {% block content %}
+    {% endblock content %}
+</div>
+</section>
+    </main>
+    </body>
+</html>
