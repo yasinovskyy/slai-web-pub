@@ -1,0 +1,11 @@
+.legend {
+    color: green;
+}
+
+.notlegend {
+    color: red;
+}
+
+td {
+    text-align: left;
+}
