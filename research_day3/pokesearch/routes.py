@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from pokesearch.logic import read_csv, query
-from flask import Blueprint, Flask, abort, current_app, render_template, request
+from pokesearch.logic import query
+from flask import Blueprint, abort, current_app, render_template, request
 
 
 main = Blueprint("main", __name__, url_prefix="/")
@@ -21,7 +21,7 @@ def post_index():
 def pok_by_id(pokemon_id: int):
     data = [record for record in current_app.data if int(record["ID"]) == pokemon_id]
     if data:
-        return data
+        return render_template("details.html", data=data)
     abort(404)
 
 

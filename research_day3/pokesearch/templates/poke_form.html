@@ -3,6 +3,7 @@
 <form method="post" action="{{ url_for("main.post_index") }}">
     <label for="primary_type">Type</label>
     <select name="primary_type">
+        <option value="Any">Any</option>
         {% for type in types %}
         <option value={{type}}>{{type}}</option>
         {% endfor %}

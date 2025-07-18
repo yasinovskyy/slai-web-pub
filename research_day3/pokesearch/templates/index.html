@@ -2,6 +2,7 @@
 {% block content %}
 <div>
     {% if data %}
+    <h3>Found {{ data | length }} pokemons matching the search criteria.</h3>
         <table>
             <thead>
                 {% for col in data[0].keys() %}<th>{{ col }}</th>{% endfor %}
@@ -12,7 +13,7 @@
                         {% for key, value in row.items() %}
                             {% if key == "Name" %}
                                 <td>
-                                    <a href={{ url_for("pok_by_id", pokemon_id=row["ID"]) }}>{{ value }}</a>
+                                    <a href={{ url_for("main.pok_by_id", pokemon_id=row["ID"]) }}>{{ value }}</a>
                                 </td>
                             {% elif key == "Legendary" and value %}
                                 <td class="legend">✓</td>

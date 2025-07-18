@@ -31,9 +31,15 @@ def read_csv(filename: str):
 def query(form: dict):
     result = []
     for record in current_app.data:
-        if (
-            form["primary_type"] == record["Type 1"] or form["primary_type"] == record["Type 2"]
-        ) and int(form["min_health"]) <= record["HP"] <= int(form["max_health"]):
-            result.append(record)
+        if form["primary_type"] != "Any":
+            if form["primary_type"] != record["Type 1"]:
+                continue
+        if form["min_health"].isdigit():
+            if int(form["min_health"]) > record["HP"]:
+                continue
+        if form["max_health"].isdigit():
+            if int(form["max_health"]) < record["HP"]:
+                continue
+        result.append(record)
 
     return result
