@@ -5,7 +5,6 @@ from flask import Flask
 def create_app():
     inner_app = Flask(__name__)
     inner_app.config.from_prefixed_env()
-    print(inner_app.config)
     inner_app.data = read_csv("pokesearch/data/pokemon.csv")
     poke_types = set()
     for record in inner_app.data:
