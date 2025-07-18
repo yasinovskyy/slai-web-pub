@@ -1,9 +1,11 @@
+import dotenv
 from pokesearch.logic import read_csv
 from flask import Flask
 
 
 def create_app():
     inner_app = Flask(__name__)
+    dotenv.load_dotenv(".flaskenv")
     inner_app.config.from_prefixed_env()
     inner_app.data = read_csv("pokesearch/data/pokemon.csv")
     poke_types = set()
