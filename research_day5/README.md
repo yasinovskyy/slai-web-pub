@@ -1,4 +1,4 @@
-# Day 6. Using databases
+# Day 5. Using databases
 
 Python comes with SQLite built-in but can work with many other Database Management Systems via connectors and adapters.
 
@@ -21,19 +21,7 @@ rows = cur.fetchall()
 print(rows)
 ```
 
-## `records`
-
-`records` is a library that can be used to connect to various databases.
-
-```python
-import records
-
-db = records.Database("sqlite:///chinook.db")
-rows = db.query("select * from artists")
-print(rows)
-```
-
-## `sqlite3`
+## `sqlite3` command-line tool
 
 Create an empty database:
 
@@ -98,7 +86,7 @@ Import data from a file into a table:
 sqlite> .import menagerie.csv animal
 ```
 
-One record (first line) may cause `INSERT failed: datatype mismatch` error but the rest should go through. Delete the first lin (cav heading) if necessary.
+One record (first line) may cause `INSERT failed: datatype mismatch` error but the rest should go through. Delete the first line (csv heading) if necessary.
 
 Check the database schema:
 
