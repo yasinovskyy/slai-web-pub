@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Pookiedex</title>
+</head>
+
+<body class="container">
+    <header>
+        <h1>Welcome to Pookiedex</h1>
+        <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/{{ '%03d' % poke_id }}.png" width="50px" />
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Search below for a pokemon</h2>
+        <p>{{ message }}</p>
+        <ul>
+        {% for pokemon in data %}
+        <li>
+        <a href={{ url_for("pokemon_by_id", poke_id=pokemon['National Dex #']) }}>{{ pokemon["Name"] }}</a>
+        </li>
+        {% endfor %}
+        </ul>
+    </main>
+</body>
+
+</html>
