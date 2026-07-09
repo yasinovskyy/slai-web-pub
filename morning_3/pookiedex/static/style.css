@@ -1,0 +1,12 @@
+.dog {
+    color: blueviolet;
+}
+
+#winston {
+    background-color: palevioletred;
+}
+
+input[type="checkbox"] {
+    transform: scale(2);
+    margin: 20px;
+}
