@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Flask for Fun</title>
+    <link rel="stylesheet" href={{ url_for("static", filename="pico.min.css" ) }}>
+    <link rel="stylesheet" href={{ url_for("static", filename="style.css" ) }}>
+</head>
+
+<body class="container">
+    <header>
+        <h2>Pick the language, the category, and the number of jokes to retrieve</h2>
+        <form method="post" action="{{url_for('main.show_form')}}">
+            <fieldset class="grid">
+                <label for="languageField">Language
+                    <select name="language" id="languageField">
+                        <!-- TODO: Populate language options -->
+                    </select>
+                </label>
+                <fieldset id="categoryField">
+                    <legend>Category</legend>
+                    <!-- TODO: Populate category options -->
+                </fieldset>
+                <!-- TODO: Read a number between 1 and 9 -->
+            </fieldset>
+            <button type="submit" id="btnAmuse">Amuse me</button>
+        </form>
+    </header>
+    <main>
+        <section id="jokes">
+            <!-- TODO: Populate with jokes-->
+        </section>
+    </main>
+</body>
+
+</html>
