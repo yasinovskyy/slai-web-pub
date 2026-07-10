@@ -50,9 +50,9 @@ playwright install
 Run the tests as follows:
 
 ```bash
-python3 -m pytest -v tests/test_jokes_logic.py
-python3 -m pytest -v tests/test_jokes_routes.py
-python3 -m pytest -v tests/test_jokes_ui.py
+python3 -m pytest -v tests/test_logic.py
+python3 -m pytest -v tests/test_routes.py
+python3 -m pytest -v tests/test_ui.py
 ```
 
 Tests are also marked by the level of complexity (70 easy, 440 medium, and 120 hard).
