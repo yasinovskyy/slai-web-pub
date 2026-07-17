@@ -1,0 +1,13 @@
+.error {
+    color: red;
+}
+
+.warning {
+    color: orange;
+}
+
+.small-button {
+    transform: scale(0.75);
+    margin: -15px -50px -30px -50px;
+    /* margin-top: -10px; */
+}

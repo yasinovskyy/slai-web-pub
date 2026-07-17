@@ -1,0 +1,43 @@
+{% extends "base.jinja" %}
+{% block content %}
+    <section id="animals">
+        <table class="striped">
+            <thead>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Species</th>
+                <th>Location</th>
+                {% if current_user.is_authenticated %}
+                    <th>Decision</th>
+                {% else %}
+                    <th>Popularity</th>
+                {% endif %}
+            </thead>
+            <tbody>
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.age }}</td>
+                        <td>{{ item.species }}</td>
+                        {% if current_user.is_authenticated %}
+                            <td>{{ item.location }}</td>
+                            <td>
+                                <form method="post" action="{{ url_for('main.adopt', animal_id=item.id) }}" class="small-button">
+                                    <div role="group">
+                                        <input type="submit" name="adopt" value="Adopt" class="primary"
+                                            {% if item.id in adopted %}disabled{% endif %} />
+                                        <input type="submit" name="reject" value="Reject" class="pico-background-pink-600"
+                                            {% if item.id not in adopted %}disabled{% endif %} />
+                                    </div>
+                                </form>
+                            </td>
+                        {% else %}
+                            <td>{{ "*" * item.location|length }}</td>
+                            <td>{{ "❤️" * admired.get(item.id, 0) }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock content %}

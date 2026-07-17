@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Menagerie">
+    <meta name="keywords" content="flask, jinja, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Menagerie</title>
+</head>
+
+<body>
+    <header class="container">
+        <nav>
+            <ul>
+                <a href='{{ url_for("main.index") }}'>Menagerie adoption center 🦝</a>
+            </ul>
+            <ul>
+                {% if "current_user" in session %}
+                    <li>Hi {{ g.current_user["name"] }}!</li>
+                    <li>
+                        <a href='{{ url_for("main.profile") }}'>Profile</a>
+                    </li>
+                    <li>
+                        <a href='{{ url_for("auth.logout") }}'>Log out</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href='{{ url_for("auth.signup") }}'>Sign up</a>
+                    </li>
+                    <li>
+                        <a href='{{ url_for("auth.login") }}'>Log in</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        {% block content %}
+            <section>
+                <form method="post" action='{{ url_for("auth.login") }}'>
+                    <label>Email
+                        <input name="email" type="email" placeholder="Email" maxlength="32">
+                    </label>
+                    <label>Password
+                        <input name="password" type="password" placeholder="Password" maxlength="32" required>
+                    </label>
+                    <input type="submit" value="Sign in">
+                </form>
+            </section>
+        {% endblock content %}
+    </main>
+    <footer class="container">
+        {% for category, msg in get_flashed_messages(with_categories=true) %}
+            <p class="{{ category }}">{{ msg }}</p>
+        {% endfor %}
+    </footer>
+</body>
+
+</html>

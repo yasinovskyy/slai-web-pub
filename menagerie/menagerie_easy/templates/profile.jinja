@@ -1,0 +1,14 @@
+{% extends "base.jinja" %}
+{% from "_formhelpers.jinja" import render_field %}
+{% block content %}
+<section>
+    <form method="post" action='{{ url_for("auth.profile") }}'>
+        {{ form.csrf_token }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.name) }}
+        {{ render_field(form.password) }}
+        {{ render_field(form.confirm) }}
+        <input type="submit" value="Update profile">
+    </form>
+</section>
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% macro render_field(field) %}
+{{ field.label }}
+{% if field.errors %}
+{{ field(**{"aria-invalid": "true", "aria-describedby": "invalid-helper"}) }}
+{% for error in field.errors %}
+<small>{{ error }}</small>
+{% endfor %}
+{% else %}
+{{ field(**kwargs)|safe }}
+{% endif %}
+{% endmacro %}
